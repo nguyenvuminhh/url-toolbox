@@ -1,0 +1,9 @@
+
+-----------------------------------------------------------------------------
+Day: 29/09/24
+Hour: 3.5
+BE: Implement basic user router and login router
+-----------------------------------------------------------------------------
+Day: 28/09/24
+Hour: 4
+ML: Collected data, pre-processed, trained RandomForestClassifier
