@@ -3,10 +3,12 @@ require('dotenv').config()
 const { MONGOOSE_URL } = require('./util/config')
 const userRouter = require('./controller/user')
 const loginRouter = require('./controller/login')
+const urlRouter = require('./controller/url')
+const redirector = require('./controller/redirector')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-require('express-async-error')
+require('express-async-errors')
 
 const mongoose = require('mongoose')
 const { errorHandler, requestLogger } = require('./util/middleware')
@@ -21,9 +23,10 @@ app.get('/ping', (req, res) => {
     res.send('pong')
 })
 
+app.use('/api/urls', urlRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
-
+app.use('/', redirector)
 
 app.use(errorHandler)
 

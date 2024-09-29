@@ -31,6 +31,13 @@ const userExtractor = async (req, res, next) => {
     next()
 }
 
+router.delete('/', async (req, res) => {
+    console.log(123);
+    
+    await User.deleteMany({})
+    res.status(200)
+})
+
 singleRouter.put('/editBasic', async (req, res) => {
     const body = req.body
     const result = await editUserBasic(req.user, body)

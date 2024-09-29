@@ -1,0 +1,14 @@
+GET http://localhost:3000/api/users
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "Nguyen Van A",
+    "password": "testpassword",
+    "username": "nguyenvana",
+    "email": "nguyenvana@gmail.com",
+    "phoneCode": "+84",
+    "phoneNumber": "0987654321"
+}

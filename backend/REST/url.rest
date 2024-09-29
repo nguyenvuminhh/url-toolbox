@@ -1,0 +1,10 @@
+GET http://localhost:3000/api/urls
+###
+POST http://localhost:3000/api/urls
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ndXllbnZhbmEiLCJpZCI6IjY2ZjljMzc1MjQyMWU1NzEyNGE1MjU0MiIsImlhdCI6MTcyNzY0NDUzOX0.2OU-n2rklkaTcyaUvHhW1s_sV491fxrBvHhdqbD-uA8
+Content-Type: application/json
+
+{
+    "longUrl": "https://facebook.com",
+    "shortUrl": "phaybuk"
+}
