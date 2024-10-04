@@ -8,7 +8,7 @@ const getAllUsers = async () => {
 }
 
 const createNewUser = async ({ name, username, password, phoneNumber, email }) => {
-    checkAvailability('Missing information.', [name, username, password, phoneNumber, email])
+    checkAvailability('Status: 400 | Missing information.', [name, username, password, phoneNumber, email])
 
     const passwordHash = bcrypt.hashSync(password)
     const newUser = new User({
@@ -18,7 +18,7 @@ const createNewUser = async ({ name, username, password, phoneNumber, email }) =
     return newUser
 }
 const editUserPassword = async (user, payload) => { //TODO: terminate
-    checkAvailability('Authentication failed', [bcrypt.compareSync(payload.oldPassword, user.passwordHash)])
+    checkAvailability('Status: 401 | Authentication failed', [bcrypt.compareSync(payload.oldPassword, user.passwordHash)])
     const passwordHash = bcrypt.hashSync(payload.newPassword)
     user.passwordHash = passwordHash 
     await user.save()

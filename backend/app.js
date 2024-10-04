@@ -1,5 +1,7 @@
 // IMPORT
+// @ts-nocheck
 require('dotenv').config()
+require('express-async-errors')
 const { MONGOOSE_URL } = require('./util/config')
 const userRouter = require('./controller/user')
 const loginRouter = require('./controller/login')
@@ -8,8 +10,6 @@ const redirector = require('./controller/redirector')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-require('express-async-errors')
-
 const mongoose = require('mongoose')
 const { errorHandler, requestLogger } = require('./util/middleware')
 mongoose.set('strictQuery', false)
@@ -20,7 +20,7 @@ app.use(cors())
 app.use(requestLogger)
 
 app.get('/ping', (req, res) => {
-    res.send('pong')
+    res.send('pong');
 })
 
 app.use('/api/urls', urlRouter)

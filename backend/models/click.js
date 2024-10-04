@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // Define the Click schema
 const clickSchema = new mongoose.Schema({
-    url: {
+    url: { //check
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Url'
@@ -10,16 +10,16 @@ const clickSchema = new mongoose.Schema({
     userAgent: {
         type: String,
     },
-    ipAddress: {
+    ipAddress: { //half check
         type: String,
     },
-    referer: {
+    referer: { //check
         type: String
     },
     host: {
         type: String,
     },
-    language: {
+    language: { //check
         type: String
     }
 }, {

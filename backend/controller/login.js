@@ -7,9 +7,9 @@ const router = require('express').Router()
 
 router.post('/', async (req, res) => {
     const user = await User.findOne({ username: req.body.username })
-    checkAvailability('Username or password is incorrect.', [user])
+    checkAvailability('Status: 400 | Username or password is incorrect.', [user])
     const passwordIsCorrect = bcrypt.compareSync(req.body.password, user.passwordHash)
-    checkAvailability('Username or password is incorrect.', [passwordIsCorrect])
+    checkAvailability('Status: 400 | Username or password is incorrect.', [passwordIsCorrect])
     const userForToken = { username: user.username, id: user.id }
     const token = jwt.sign(userForToken, JWT_SECRET)
     res.json({token, ...userForToken, name: user.name})
