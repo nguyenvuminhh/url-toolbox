@@ -11,8 +11,9 @@ router.get('/', async (req, res) => {
 
 router.post('/', tokenExtractor, currentUserExtractor, async (req, res) => {
     const { longUrl, shortUrl } = req.body
+    console.log(1234);
     
-    checkAvailability('Status: 400 | Missing long URL or short URL.', [longUrl, shortUrl])
+    checkAvailability('Missing long URL or short URL.', [longUrl, shortUrl])
     const newUrlShorten = await addNewUrl({
         longUrl,
         shortUrl,

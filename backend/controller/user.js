@@ -26,7 +26,7 @@ const userExtractor = async (req, res, next) => {
     } else {
         user = await User.findById(req.params.id)
     }
-    checkAvailability('Status: 400 | User not found.', [user])
+    checkAvailability('User not found.', [user])
     req.user = user
     next()
 }

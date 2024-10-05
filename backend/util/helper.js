@@ -10,4 +10,14 @@ const arrayUniqueValidator = (value) => {
     return new Set(value).size === value.length
 }
 
-module.exports = { checkAvailability, arrayUniqueValidator }
+const urlValidator = (url) => {
+    try {
+        new URL(url)
+        return true
+    } catch (err) {
+        return false
+    }
+}
+
+
+module.exports = { checkAvailability, arrayUniqueValidator, urlValidator }

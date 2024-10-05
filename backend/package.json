@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,11 +14,18 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "express-async-error": "^0.0.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.7.0"
+    "mongoose": "^8.7.0",
+<<<<<<< HEAD
+    "onnxjs": "^0.1.8",
+    "onnxruntime-node": "^1.19.2",
+    "tld-extract": "^2.1.0"
   },
   "devDependencies": {
+=======
+>>>>>>> parent of 30a6a5d4 (fine-tune redirector. debug express-async-error)
     "nodemon": "^3.1.7"
   }
 }

@@ -1,18 +1,12 @@
 const mongoose = require('mongoose')
+const { urlValidator } = require('../util/helper')
 
 const urlSchema = new mongoose.Schema({
     longUrl: {
         type: String,
         required: true,
         validate: {
-            validator: v => {
-                try {
-                    new URL(v)
-                    return true
-                } catch (err) {
-                    return false
-                }
-            },
+            validator: urlValidator,
             message: props => `${props.value} is not a valid URL!`
         }
     },

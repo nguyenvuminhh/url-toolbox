@@ -12,17 +12,16 @@ const requestLogger = (req, res, next) => {
 }
 
 const errorHandler = (error, req, res, next) => {
-    const code = error.message.substring(8, 11)
-    res.status(code).json({ error: error.message })
+    res.status(400).json({ error: error.message })
     next(error)
-    return
 }
 
 const tokenExtractor = async (req, res, next) => {
     const auth = req.headers.authorization
     console.log(auth)
     if (!auth || !auth.startsWith('Bearer ')) {
-        throw Error("Status: 401 | Authorization failed!")
+        res.status(500).json({ error: 'Authorization failed!' })
+        return
     }
     req.token = auth.substring(7)
     next()
@@ -32,7 +31,8 @@ const currentUserExtractor = async (req, res, next) => {
     const decodedToken = await jwt.verify(req.token, JWT_SECRET)
     const user = await User.findById(decodedToken.id)
     if (!user) {
-        throw Error("Status: 401 | Authorization failed!")
+        res.status(500).json({ error: 'Authorization failed.' })
+        return
     }
     req.currentUser = {
         id: user._id,
@@ -43,21 +43,5 @@ const currentUserExtractor = async (req, res, next) => {
     next()
 }
 
-const expressAsyncError = (options) => {
-    options = options || {};
-    return function(req,res,next){
-        var d = domain.create();
 
-        req[options.domainPropertyName || '_domain'] = d;
-
-        d.on('error',function(err){
-            next(err)
-        })
-
-        d.run(function(){
-            next();
-        })
-    }
-}
-
-module.exports = { errorHandler, tokenExtractor, currentUserExtractor, requestLogger, expressAsyncError }
+module.exports = { errorHandler, tokenExtractor, currentUserExtractor, requestLogger }

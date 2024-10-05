@@ -1,2 +1,7 @@
 *.csv
 *.env
+**/myenv/
+**/node_modules/
+/resource/
+*.onnx
+*.pkl

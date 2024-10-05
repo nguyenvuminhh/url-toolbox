@@ -1,18 +1,22 @@
 const { findOne, click } = require('../service/url')
-const { checkAvailability } = require('../util/helper')
 
 const router = require('express').Router()
 
 router.get('/:url', async (req, res) => {
     const url = req.params.url
-    console.log("REQQQQQQQQQQQQQQ:", req.headers)
     const urlObject = await findOne({ url })
-    checkAvailability("Status: 400 | Unbinded URL.", [urlObject])
+<<<<<<< HEAD
+    checkAvailability("Status: 404 | URL not found.", [urlObject])
+    if (urlObject.deactivated) {
+        throw Error("Status 404 | URL not found.")
+    }
+=======
+>>>>>>> parent of 30a6a5d4 (fine-tune redirector. debug express-async-error)
     const longUrl = urlObject.longUrl
-    const userAgent = req.headers['user-agent']
+    const userAgent = req.header['user-agent']
     const ipAddress = req.ip
     const referer = req.headers.referer || req.headers.referrer
-    const host = req.headers.host
+    const host = req.header.host
     const language = req.headers['accept-language']
     await click({
         url: urlObject._id,

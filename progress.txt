@@ -1,9 +1,24 @@
 
 -----------------------------------------------------------------------------
+Day: 05/10/24
+Hour: 7 
+ML: Export model. Add extra database. One extra feature. (1.5)
+ML: Collected data for suspicion keywords. (1)
+EXP: Try to build phishing detector endpoint using onnx-runtime. (3)
+FAST: Basic detector endpoint done using joblib. (1.5)
+-----------------------------------------------------------------------------
+Day: 04/10/24
+Hour: 2
+EXP: Fine-tune redirector. Debug express-async-error.
+-----------------------------------------------------------------------------
+Day: 29/09/24
+Hour: 1
+EXP: Implement basic redirector.
+-----------------------------------------------------------------------------
 Day: 29/09/24
 Hour: 3.5
-BE: Implement basic user router and login router
+EXP: Implement basic user router and login router.
 -----------------------------------------------------------------------------
 Day: 28/09/24
 Hour: 4
-ML: Collected data, pre-processed, trained RandomForestClassifier
+ML: Collected data, pre-processed, trained RandomForestClassifier.
