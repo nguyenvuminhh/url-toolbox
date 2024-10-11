@@ -1,4 +1,7 @@
-
+-----------------------------------------------------------------------------
+Day: 11/10/24
+Hour: 4
+ML: Add more features (ccTLD, gTLD), add unit tests for helper functions, add credible datasets from Aalto, Uci, PhishTank,...
 -----------------------------------------------------------------------------
 Day: 05/10/24
 Hour: 7 
