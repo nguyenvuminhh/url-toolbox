@@ -18,7 +18,6 @@ const errorHandler = (error, req, res, next) => {
 
 const tokenExtractor = async (req, res, next) => {
     const auth = req.headers.authorization
-    console.log(auth)
     if (!auth || !auth.startsWith('Bearer ')) {
         res.status(500).json({ error: 'Authorization failed!' })
         return

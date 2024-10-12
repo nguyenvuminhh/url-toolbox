@@ -9,6 +9,7 @@ router.get('/:url', async (req, res) => {
     if (urlObject.deactivated) {
         throw Error("Status 404 | URL not found.")
     }
+ 
     const longUrl = urlObject.longUrl
     const userAgent = req.header['user-agent']
     const ipAddress = req.ip
@@ -23,6 +24,14 @@ router.get('/:url', async (req, res) => {
         host,
         language
     })
+    const xForwardedFor = req.headers['x-forwarded-for'];
+    const ips = xForwardedFor ? xForwardedFor.split(',') : [];
+
+    // Determine if the IP address is IPv4 or IPv6
+    const ipv4 = ips.length > 0 ? ips[0] : ipAddress; // Use the first one from the list
+    const ipv6 = ipAddress.includes(':') ? ipAddress : null; // Check if the IP is IPv6
+    console.log(ipv4)
+    console.log(ipv6)
     res.redirect(longUrl)
 })
 
