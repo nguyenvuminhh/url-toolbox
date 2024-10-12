@@ -1,5 +1,5 @@
 const { findOne, click } = require('../service/url')
-
+const { checkAvailability } = require('../util/helper')
 const router = require('express').Router()
 
 router.get('/:url', async (req, res) => {
