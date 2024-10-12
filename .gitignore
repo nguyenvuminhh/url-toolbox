@@ -1,7 +1,9 @@
 *.csv
 *.env
-**/myenv/
+**/node_modules
 **/node_modules/
-/resource/
+./resource
 *.onnx
 *.pkl
+**__pycache__
+**/myenv

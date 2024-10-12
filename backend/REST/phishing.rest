@@ -1,6 +1,9 @@
-POST http://127.0.0.1:8000/predict
+POST http://localhost:3000/api/phishing-detector
 Content-Type: application/json
 
 {
-    "url": "http://paypall-security.com/account/verify"
+    "url": "https://facebook.co"
 }
+
+###
+GET http://localhost:3000/api/phishing-detector/ping
