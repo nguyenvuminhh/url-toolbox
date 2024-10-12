@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 
-// Define the Click schema
 const clickSchema = new mongoose.Schema({
-    url: {
+    urlId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Url'
@@ -22,14 +21,15 @@ const clickSchema = new mongoose.Schema({
     host: {
         type: String,
     },
-    language: {
-        type: String
-    }
+    languages: [
+        {
+            type: String
+        }
+    ]
 }, {
     timestamps: { createdAt: 'createdAt' }
 })
 
-// Create a model from the schema
 const Click = mongoose.model('Click', clickSchema)
 
 module.exports = Click

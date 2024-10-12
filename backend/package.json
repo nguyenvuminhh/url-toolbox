@@ -22,7 +22,8 @@
     "mongoose": "^8.7.0",
     "onnxjs": "^0.1.8",
     "onnxruntime-node": "^1.19.2",
-    "tld-extract": "^2.1.0"
+    "tld-extract": "^2.1.0",
+    "tldts": "^6.1.51"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

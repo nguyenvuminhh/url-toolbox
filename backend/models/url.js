@@ -1,6 +1,20 @@
 const mongoose = require('mongoose')
 const { urlValidator } = require('../util/helper')
 
+
+const regionSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    count: { type: Number, required: true }
+});
+
+const countriesSchema = new mongoose.Schema({
+    count: { type: Number, required: true },
+    regions: {
+        type: Map,
+        of: regionSchema
+    }
+});
+
 const urlSchema = new mongoose.Schema({
     longUrl: {
         type: String,
@@ -13,7 +27,7 @@ const urlSchema = new mongoose.Schema({
     shortUrl: {
         type: String,
         unique: true,
-        require: true,
+        required: true,
     },
     clicks: {
         type: Number,
@@ -29,6 +43,18 @@ const urlSchema = new mongoose.Schema({
             ref: 'ClickInfo'
         }
     ],
+    userLanguages: {
+        type: Map,
+        default: {}
+    },
+    cities: {
+        type: Map,
+        default: {}
+    },
+    countries: {
+        type: Map,
+        default: {}
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -38,3 +64,13 @@ const urlSchema = new mongoose.Schema({
 const Url = mongoose.model('Url', urlSchema)
 
 module.exports = Url
+
+// countries: {
+//     count: Number,
+//     regions: {
+//         regionName: Number,
+//         regionName: Number,
+//         regionName: Number,
+//         regionName: Number
+//     }
+// }

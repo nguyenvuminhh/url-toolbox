@@ -33,4 +33,8 @@ router.put('/:url', tokenExtractor, currentUserExtractor, async (req, res) => {
     req.json(result)
 })
 
+router.put('/:url/analysis', tokenExtractor, currentUserExtractor, async (req, res) => {
+    
+})
+
 module.exports = router

@@ -1,8 +1,8 @@
-const Click = require("../models/click")
 
 const Url = require("../models/url")
+const { languageStringProcessor } = require("../util/helper")
 
-const findOne = async (info) => {
+const findOneURL = async (info) => {
     return await Url.findOne({shortUrl: info.url})
 }
 
@@ -21,13 +21,5 @@ const reactivate = async (info) => {
     await Url.findOneAndUpdate({shortUrl: info.url}, {deactivated: false})
 }
 
-const click = async (info) => {
-    const url = await Url.findByIdAndUpdate(info.url, { $inc: { clicks: 1 } }, { new: true, runValidators: true})
-    const newClick = new Click(info)
-    await newClick.save()
-    url.clickInfo.push(newClick)
-    await url.save()
-    return newClick
-}
 
-module.exports = { findOne, addNewUrl, deactivate, reactivate, click}
+module.exports = { findOneURL, addNewUrl, deactivate, reactivate }

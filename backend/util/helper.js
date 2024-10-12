@@ -1,3 +1,6 @@
+const { IPAPI_API_KEY } = require("./config")
+const { parse } = require('tldts')
+
 const checkAvailability = (message, items) => {
     for (let i = 0; i < items.length; i++) {
         if (!items[i]) {
@@ -19,5 +22,26 @@ const urlValidator = (url) => {
     }
 }
 
+const languageStringProcessor = (languageString) => {
+    const languageArray = languageString.split(',')
+    const result = []
+    for (let i = 0; i < languageArray.length; i++) {
+        const language = languageArray[i].substring(0, 2)
+        const fullLanguageName = new Intl.DisplayNames(['en'], { type: 'language' }).of(language)
+        if (!result.includes(fullLanguageName)) {
+            result.push(fullLanguageName)
+        }
+    }
+    return result
+}
 
-module.exports = { checkAvailability, arrayUniqueValidator, urlValidator }
+const ipapiLink = (ip) => {
+    return "http://api.ipapi.com/api/" + ip + "?access_key=" + IPAPI_API_KEY
+}
+
+const extractDomainName = (url) => {
+    const parsed = parse(url)
+    return parsed.domainWithoutSuffix
+}
+
+module.exports = { checkAvailability, arrayUniqueValidator, urlValidator, languageStringProcessor, ipapiLink, extractDomainName }
