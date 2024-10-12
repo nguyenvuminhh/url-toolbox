@@ -5,8 +5,8 @@ const router = require('express').Router()
 
 router.post('/', async (req, res) => {
     const url = req.body.url    
-    const result = await axios.post('http://127.0.0.1:8000/predict', { url });
-    res.json(result.data);
+    const result = await axios.post('http://127.0.0.1:8000/predict', { url })
+    res.json(result.data)
 })
 
 router.get('/ping', async (req, res) => {

@@ -10,7 +10,10 @@ const clickSchema = new mongoose.Schema({
     userAgent: {
         type: String,
     },
-    ipAddress: {
+    ipv4: {
+        type: String,
+    },
+    ipv6: {
         type: String,
     },
     referer: {

@@ -32,8 +32,6 @@ const userExtractor = async (req, res, next) => {
 }
 
 router.delete('/', async (req, res) => {
-    console.log(123);
-    
     await User.deleteMany({})
     res.status(200)
 })

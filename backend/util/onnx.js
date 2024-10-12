@@ -1,7 +1,7 @@
 // const onnx = require('onnxruntime-node')
-// const tldExtract = require('tld-extract');
-// const path = require('path');
-// const { urlValidator } = require('./helper');
+// const tldExtract = require('tld-extract')
+// const path = require('path')
+// const { urlValidator } = require('./helper')
 // const countChar = (url) => {
 //     const length = url.length
 //     const charCount = {
@@ -12,7 +12,7 @@
 //         'digit': 0,
 //         'nonAlnum': 0,
 //     }
-//     for (let i = 0; i < length; i++) {
+//     for (let i = 0 i < length i++) {
 //         const char = url[i]
 //         if (char == '.') {
 //             charCount['dot'] ++
@@ -43,14 +43,14 @@
 // }
 
 // const countSubdomain = (url) => {
-//     const extracted = tldExtract(url);
+//     const extracted = tldExtract(url)
 //     return extracted.subdomain ? extracted.subdomain.split('.').length : 0
 // }
 
 // const loadModel = async () => {
-//     const modelPath = path.resolve(__dirname, '../model.onnx');
-//     const session = await onnx.InferenceSession.create(modelPath);
-//     // console.log('Input Names:', session);
+//     const modelPath = path.resolve(__dirname, '../model.onnx')
+//     const session = await onnx.InferenceSession.create(modelPath)
+//     // console.log('Input Names:', session)
 //     return session
 // }
 
@@ -95,7 +95,7 @@
 // predict("http://facebook.com").then(output => {
 //     console.log(output)
 // }).catch(err => {
-//     console.error(err);
-// });
+//     console.error(err)
+// })
 
 // module.exports = { predict }

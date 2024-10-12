@@ -25,8 +25,6 @@ const click = async (info) => {
     const url = await Url.findByIdAndUpdate(info.url, { $inc: { clicks: 1 } }, { new: true, runValidators: true})
     const newClick = new Click(info)
     await newClick.save()
-    console.log(url);
-    
     url.clickInfo.push(newClick)
     await url.save()
     return newClick
