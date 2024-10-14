@@ -1,4 +1,4 @@
-const { addRegion, addLanguages, click } = require('../service/click')
+const { addRegion, addLanguages, click, addReferer } = require('../service/click')
 const { findOneURL } = require('../service/url')
 const { checkAvailability, extractDomainName } = require('../util/helper')
 const router = require('express').Router()
@@ -6,9 +6,9 @@ const router = require('express').Router()
 router.get('/:url', async (req, res) => {
     const url = req.params.url
     const urlObject = await findOneURL({ url })
-    checkAvailability("Status: 404 | URL not found.", [urlObject])
+    checkAvailability('Status: 404 | URL not found.', [urlObject])
     if (urlObject.deactivated) {
-        throw Error("Status 404 | URL not found.")
+        throw Error('Status 404 | URL not found.')
     }
     const longUrl = urlObject.longUrl
     const userAgent = req.header['user-agent']
@@ -24,6 +24,7 @@ router.get('/:url', async (req, res) => {
     const languages = req.headers['accept-language']
     await addLanguages({ languages, urlObject })
     await addRegion({ ipv4, urlObject })
+    await addReferer({ referer, urlObject })
     await click({
         urlId: urlObject._id,
         userAgent,
@@ -31,6 +32,7 @@ router.get('/:url', async (req, res) => {
         ipv6,
         referer: extracterReferer,
         host,
+        languages,
     })
     res.redirect(longUrl)
 })

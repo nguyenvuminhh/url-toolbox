@@ -1,7 +1,7 @@
-const { default: axios } = require("axios")
-const Click = require("../models/click")
-const Url = require("../models/url")
-const { languageStringProcessor, ipapiLink } = require("../util/helper")
+const { default: axios } = require('axios')
+const Click = require('../models/click')
+const Url = require('../models/url')
+const { languageStringProcessor, ipapiLink } = require('../util/helper')
 
 const click = async (info) => {
     const url = await Url.findByIdAndUpdate(info.urlId, { $inc: { clicks: 1 } }, { new: true, runValidators: true})
@@ -23,21 +23,29 @@ const addLanguages = async (info) => {
     await urlObject.save()
 }
 
+
+const addReferer = async (info) => {
+    const { referer, urlObject } = info
+    const currentValueReferer = urlObject.countries.get(referer) || 0
+    urlObject.countries.set(referer, currentValueReferer+1)
+    await urlObject.save()
+}
+
 const getAddress = async (info) => {
     const link = ipapiLink(info.ipv4)
     //const res = await axios.get(link)
     console.log(link)
     return {
-        country: "Vietnam", //res.data.country_name,
-        city: "Hanoi", //res.data.city
-        region: "Hanoi" //res.data.region_name
+        country: 'Vietnam', //res.data.country_name,
+        city: 'Hanoi', //res.data.city,
+        region: 'Hanoi' //res.data.region_name
     }
 }
 
 const addRegion = async (info) => {
     const { ipv4, urlObject } = info
     const { country, region, city } = await getAddress({ ipv4 })
-    const cityAndRegion = city + " (" + region + ") "
+    const cityAndRegion = country + '-' + city + ' (' + region + ') '
     const currentValueCountry = urlObject.countries.get(country) || 0
     urlObject.countries.set(country, currentValueCountry+1)
     const currentValueCity = urlObject.cities.get(cityAndRegion) || 0
@@ -47,4 +55,4 @@ const addRegion = async (info) => {
 
 
 
-module.exports = { click, addLanguages, getAddress, addRegion }
+module.exports = { click, addLanguages, getAddress, addRegion, addReferer }

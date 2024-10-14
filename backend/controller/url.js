@@ -1,5 +1,5 @@
 const Url = require('../models/url')
-const { addNewUrl, reactivate, deactivate } = require('../service/url')
+const { addNewUrl, reactivate, deactivate, analyze } = require('../service/url')
 const { checkAvailability } = require('../util/helper')
 const { tokenExtractor, currentUserExtractor } = require('../util/middleware')
 const { route } = require('./user')
@@ -28,13 +28,19 @@ router.put('/:url', tokenExtractor, currentUserExtractor, async (req, res) => {
     } else if (req.body.action == 'deactivate') {
         result = await deactivate(req.params.url)
     } else {
-        result = {error: 'Invalid action'}
+        throw Error('Status: 400 | Unknown action.') 
     }
     req.json(result)
 })
 
 router.put('/:url/analysis', tokenExtractor, currentUserExtractor, async (req, res) => {
-    
+    if (req.query.region) {
+        const cities = await regionalAnalyze({ url: req.params.url, region: req.query.region})
+        res.send(cities)
+        return 
+    }
+    const result = await analyze({ url: req.params.url })
+    res.json(result)
 })
 
 module.exports = router

@@ -1,4 +1,4 @@
-const { IPAPI_API_KEY } = require("./config")
+const { IPAPI_API_KEY } = require('./config')
 const { parse } = require('tldts')
 
 const checkAvailability = (message, items) => {
@@ -36,7 +36,7 @@ const languageStringProcessor = (languageString) => {
 }
 
 const ipapiLink = (ip) => {
-    return "http://api.ipapi.com/api/" + ip + "?access_key=" + IPAPI_API_KEY
+    return 'http://api.ipapi.com/api/' + ip + '?access_key=' + IPAPI_API_KEY
 }
 
 const extractDomainName = (url) => {
