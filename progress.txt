@@ -1,6 +1,31 @@
+PROGRESS LOG
+Note:
+    EXP is Express server, the main backend
+    FAST is the FastAPI server, the backend for the ML model
+    ML is machine learning, the model used to predict phishing
+    FE is front end
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Day: 19/10/24
+Hour: 6
+EXP: Add url analysis endpoint
+FE: Set up the frame for front end (not yet connected to backend) (4.5)
+FE: Design the logo, pick out the palette (all in src/resource.pttx) (1.5)
+-----------------------------------------------------------------------------
+Day: 14/10/24
+Hour: 0.5
+EXP: Add url analysis endpoint
+-----------------------------------------------------------------------------
+Day: 12/10/24
+Hour: 6
+EXP: Properly extracted IP address. Find API to find the location. (1)
+EXP: Extract the domain of the referer. (0.5)
+EXP: Try to deploy on Render to get the IP address instead of '::1' from localhost. (2)
+EXP: Save the number of languages, countrys, and cities in URL mongo object for analysis. (2.5)
+-----------------------------------------------------------------------------
 Day: 12/10/24
 Hour: 1
-FAST: Adjust to fit with the new ML model
+FAST: Adjust to fit with the new ML model.
 -----------------------------------------------------------------------------
 Day: 11/10/24
 Hour: 4
