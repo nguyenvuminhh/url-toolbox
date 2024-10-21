@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    // basic info: name, username, password, DOB, phone
+    // basic info: name, username, password, phoneNumber, email
     const body = req.body
     const newUser = await createNewUser(body)
     res.status(201).json(newUser)

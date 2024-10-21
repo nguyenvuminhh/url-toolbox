@@ -4,11 +4,15 @@ Note:
     FAST is the FastAPI server, the backend for the ML model
     ML is machine learning, the model used to predict phishing
     FE is front end
+Total: 37
 -----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Day: 22/10/24
+Hour: 2
+FE: Login, logout, signup
 -----------------------------------------------------------------------------
 Day: 19/10/24
 Hour: 6
-EXP: Add url analysis endpoint
 FE: Set up the frame for front end (not yet connected to backend) (4.5)
 FE: Design the logo, pick out the palette (all in src/resource.pttx) (1.5)
 -----------------------------------------------------------------------------

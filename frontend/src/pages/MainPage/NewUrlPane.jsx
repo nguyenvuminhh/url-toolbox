@@ -1,5 +1,5 @@
 import { Grid2, Box, TextField, Button, Typography } from '@mui/material'
-import { backgroundColor, paneColor } from '../theme'
+import { backgroundColor, paneColor } from '../../theme'
 import { useState } from 'react'
 
 const NewUrlPane = () => {
@@ -14,16 +14,7 @@ const NewUrlPane = () => {
     }
     return (
         <Grid2 item size={10}>
-        <Box
-            sx={{
-            height: '100%',
-            display: 'flex',
-            backgroundColor: backgroundColor,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            }}
-        >
+        
             <Box
             sx={{
                 height: '100%',
@@ -64,7 +55,6 @@ const NewUrlPane = () => {
                 </div>
             </form>
             </Box>
-        </Box>
         </Grid2>
     )
 }
