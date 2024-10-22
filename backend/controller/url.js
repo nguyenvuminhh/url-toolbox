@@ -18,6 +18,7 @@ router.post('/', tokenExtractor, currentUserExtractor, async (req, res) => {
         shortUrl,
         owner: req.currentUser.id
     })
+    
     res.status(201).json(newUrlShorten)
 })
 
@@ -33,8 +34,8 @@ router.put('/:url', tokenExtractor, currentUserExtractor, async (req, res) => {
     req.json(result)
 })
 
-router.put('/:url/analysis', tokenExtractor, currentUserExtractor, async (req, res) => {
-    if (req.query.region) {
+router.get('/:url/analysis', tokenExtractor, currentUserExtractor, async (req, res) => {
+    if (req.query.region != 'none') {
         const cities = await regionalAnalyze({ url: req.params.url, region: req.query.region})
         res.send(cities)
         return 

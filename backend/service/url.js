@@ -1,5 +1,6 @@
 
 const Url = require('../models/url')
+const User = require('../models/user')
 const { languageStringProcessor } = require('../util/helper')
 
 const findOneURL = async (info) => {
@@ -9,6 +10,12 @@ const findOneURL = async (info) => {
 const addNewUrl = async (info) => {
     const newUrl = new Url(info)
     await newUrl.save()
+    await User.findByIdAndUpdate(
+        info.owner,
+        { $push: { urls: newUrl } },
+        { new: true, useFindAndModify: false }
+    )
+    
     return newUrl
 }
 
@@ -23,6 +30,7 @@ const reactivate = async (info) => {
 
 const analyze = async (info) => {
     const urlObject = await Url.findOne({ shortUrl: info.url }).populate('clickInfo')
+    console.log(urlObject.clickInfo)
     const result = {
         countries: urlObject.countries,
         longUrl: urlObject.longUrl,
@@ -30,7 +38,8 @@ const analyze = async (info) => {
         clicks: urlObject.clicks,
         deactivated: urlObject.deactivated,
         userLanguages: urlObject.userLanguages,
-        referers: urlObject.referers
+        referers: urlObject.referers,
+        timeStamps: urlObject.clickInfo.map(a => a.createdAt)
     }
     return result
 }

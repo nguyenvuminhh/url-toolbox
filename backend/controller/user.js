@@ -20,12 +20,8 @@ router.post('/', async (req, res) => {
 const singleRouter = require('express').Router()
 
 const userExtractor = async (req, res, next) => {
-    let user
-    if (req.params.id === 'current') {
-        user = await User.findById(req.currentUser.id)
-    } else {
-        user = await User.findById(req.params.id)
-    }
+    let user = await User.findById(req.currentUser.id)
+    
     checkAvailability('User not found.', [user])
     req.user = user
     next()
@@ -52,6 +48,11 @@ singleRouter.get('/', async (req, res) => {
     res.json(req.user)
 })
 
-router.use('/:id', tokenExtractor, currentUserExtractor, userExtractor, singleRouter)
+singleRouter.get('/urls', async (req, res) => {
+    const populatedUser = await req.user.populate('urls', { shortUrl: 1 })
+    res.json(populatedUser.urls)
+})
+
+router.use('/me', tokenExtractor, currentUserExtractor, userExtractor, singleRouter)
 
 module.exports = router

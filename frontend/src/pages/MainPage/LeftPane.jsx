@@ -50,7 +50,7 @@ const LogoutButton = ({ setLoginState }) => {
 const LeftPane = () => {
     const [loginState, setLoginState] = useState(!!localStorage.getItem('token'))
     return (
-        <Grid2 item size={2}>
+        <Grid2 item="true" size={2}>
             <Box
                 sx={{
                     height: '100%',
@@ -74,6 +74,7 @@ const LeftPane = () => {
                 <Box sx={{ width: '100%' }}>
                     <SectionButton sectionName={'URL Shortener'} path='/' />
                     <SectionButton sectionName={'Phising Detector'} path='/phishing-detector' />
+                    <SectionButton sectionName={'URLs Analysis'} path='/analysis' />
                 </Box>
                 {loginState ? <LogoutButton setLoginState={setLoginState}/> : <LoginAndSignupButtons />}
             </Box>

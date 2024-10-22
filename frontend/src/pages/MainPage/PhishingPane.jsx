@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Grid2, Box, TextField, Button, Typography } from '@mui/material'
 import { backgroundColor, paneColor } from '../../theme'
+import useField from '../../util/useField'
 
 const NewUrlPane = () => {
-    const [checkingUrl, setCheckingUrl] = useState('')
-
+    const checkingUrlField = useField('text')
     const handleSubmit = (e) => {
         e.preventDefault()
         onSubmit({ checkingUrl, shortTag })
@@ -24,27 +24,19 @@ const NewUrlPane = () => {
                     alignItems: 'center',
                 }}
             >
-
-                <Typography variant='h3' >Phishing Detector</Typography>
-
-                <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
-                    <div>
+                <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+                    <Typography variant='h3' >Phising Detector</Typography>
                     <TextField
                         label="URL"
                         variant="outlined"
-                        value={checkingUrl}
-                        onChange={(e) => setCheckingUrl(e.target.value)}
+                        {...checkingUrlField.field}
                         fullWidth
                         margin="normal"
                     />
-                    </div>
-                    
-                    <div>
                     <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
                         Check
                     </Button>
-                    </div>
-                </form>
+                </Box>
             </Box>
         </Grid2>
     )

@@ -15,6 +15,10 @@ const urlSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true,
+        validate:{
+            validator: (v) => !/\s/.test(v),
+            message: 'No space character is allowed'
+        },
     },
     clicks: {
         type: Number,
@@ -27,7 +31,7 @@ const urlSchema = new mongoose.Schema({
     clickInfo: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'ClickInfo'
+            ref: 'Click'
         }
     ],
     userLanguages: {

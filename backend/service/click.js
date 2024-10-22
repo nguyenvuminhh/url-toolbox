@@ -9,6 +9,7 @@ const click = async (info) => {
     await newClick.save()
     url.clickInfo.push(newClick)
     await url.save()
+    console.log(url)
     return newClick
 }
 
@@ -26,8 +27,11 @@ const addLanguages = async (info) => {
 
 const addReferer = async (info) => {
     const { referer, urlObject } = info
-    const currentValueReferer = urlObject.countries.get(referer) || 0
-    urlObject.countries.set(referer, currentValueReferer+1)
+    if (!referer) {
+        return
+    }
+    const currentValueReferer = urlObject.referers.get(referer) || 0
+    urlObject.referers.set(referer, currentValueReferer+1)
     await urlObject.save()
 }
 

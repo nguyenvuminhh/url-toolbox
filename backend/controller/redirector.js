@@ -22,9 +22,13 @@ router.get('/:url', async (req, res) => {
     const extracterReferer = referer ? extractDomainName(referer) : referer
     const host = req.header.host
     const languages = req.headers['accept-language']
+    console.log(1111111)
     await addLanguages({ languages, urlObject })
+    console.log(1111111)
     await addRegion({ ipv4, urlObject })
+    console.log(1111111)
     await addReferer({ referer, urlObject })
+    console.log(1111111)
     await click({
         urlId: urlObject._id,
         userAgent,

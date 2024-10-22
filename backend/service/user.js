@@ -17,6 +17,7 @@ const createNewUser = async ({ name, username, password, phoneNumber, email }) =
     await newUser.save()
     return newUser
 }
+
 const editUserPassword = async (user, payload) => { //TODO: terminate
     checkAvailability('Authentication failed', [bcrypt.compareSync(payload.oldPassword, user.passwordHash)])
     const passwordHash = bcrypt.hashSync(payload.newPassword)
@@ -24,6 +25,7 @@ const editUserPassword = async (user, payload) => { //TODO: terminate
     await user.save()
     return user
 }
+
 const editUserBasic = async (user, payload) => {
     if (payload.name) {
         user.name = payload.name
